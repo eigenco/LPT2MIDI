@@ -5,5 +5,6 @@
 - A simple port trapping code for MS-DOS is included. This for the time being works for direct midi commands to port 330h only.
 - Should be fairly easy to enable full MPU-401 compatibility through software (like SOFTMPU for example).
 - Tested with Roland MT-32 and Supaplex (an old MS-DOS game, requires minor modification to the code).
+- Requires power through USB while operating.
 
 Youtube link of the device in action: https://www.youtube.com/watch?v=MyJpt-w3Oao
