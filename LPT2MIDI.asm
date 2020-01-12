@@ -16,22 +16,20 @@
 
 align 16
 handler330:
-        mov     ah, al
+        mov     ah, al        
 
         mov     al, 255
         mov     dx, 0x37a
         out     dx, al
-        times 5 in al, dx
 
         mov     al, ah
         mov     dx, 0x378
         out     dx, al
-        times 5 in al, dx
 
         xor     al, al
         mov     dx, 0x37a
         out     dx, al
-        times 10 in al, dx
+        times 4 in al, dx
 
         retf
 
