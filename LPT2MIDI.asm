@@ -25,12 +25,12 @@ handler330:
         mov     al, ah
         mov     dx, 0x378
         out     dx, al
-        times 5 in al, dx
+        times 3 in al, dx
 
         xor     al, al
         mov     dx, 0x37a
         out     dx, al
-        times 5 in al, dx
+        times 3 in al, dx
 
         retf
 
