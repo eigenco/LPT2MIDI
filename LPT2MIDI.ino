@@ -1,3 +1,4 @@
+/* remember to chage SERIAL_TX_BUFFER_SIZE 512 in HardwareSerial.h so large sysex's go through as well */
 void receive() {
   Serial.write((PIND>>3) + (PINB<<5));
 }
