@@ -8,3 +8,5 @@
 - Requires power through USB while operating.
 
 Youtube link of the device in action: https://www.youtube.com/watch?v=MyJpt-w3Oao
+
+![LPT2MIDI](https://user-images.githubusercontent.com/42321684/127677789-1f42574a-1fe5-411d-8408-9c0afb767f73.jpg)
