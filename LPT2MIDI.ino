@@ -1,6 +1,6 @@
 #include "Fifo.h"
 
-static Fifo<byte, 128> fifo;
+static Fifo<byte, 192> fifo;
 
 void setup() {
   static byte MASKB = B00000111; // Using lower 3 bits of the B port

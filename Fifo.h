@@ -31,7 +31,13 @@ class Fifo {
       if (full()) {
         return false;
       }
-      m_buffer[(m_first + m_size) % S] = element;
+      // Check for buffer wrap around. We could use modulo here, but
+      // this code is very time critical and will be called from an
+      // interrupt routine. Since modulo is basically a devision the
+      // operation is just too expensive.
+      const auto rest = S - m_first;
+      const auto pos = (m_size < rest) ? (m_first + m_size) : (m_size - rest);
+      m_buffer[pos] = element;
       m_size++;
       return true;
     }
@@ -47,8 +53,11 @@ class Fifo {
         return T{};
       }
 
-      const auto result = m_buffer[m_first++];
+      const auto result = m_buffer[m_first];
       m_size--;
+      if (++m_first >= S) {
+          m_first -= S;
+      }
       return result;
     }
 
