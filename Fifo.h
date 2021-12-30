@@ -48,7 +48,7 @@ class Fifo {
       // If this function was called on an empty buffer, it's the
       // fault of the user. Normal implementation would throw
       // an exception, but we don't do such things here, so let's
-      // simply return something;
+      // simply return something
       if (empty()) {
         return T{};
       }

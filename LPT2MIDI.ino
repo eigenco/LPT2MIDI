@@ -9,8 +9,8 @@ void setup() {
   DDRB &= ~MASKB;
   DDRD &= ~MASKD;
   Serial.begin(31250);
-  auto recieve = []() { fifo.push(((PIND & MASKD) >> 3) | ((PINB & MASKB) << 5)); };
-  attachInterrupt(digitalPinToInterrupt(2), recieve, RISING);
+  auto receive = []() { fifo.push(((PIND & MASKD) >> 3) | ((PINB & MASKB) << 5)); };
+  attachInterrupt(digitalPinToInterrupt(2), receive, RISING);
 }
 
 void loop() {
