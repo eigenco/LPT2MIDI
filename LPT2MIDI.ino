@@ -1,14 +1,23 @@
-/* remember to chage SERIAL_TX_BUFFER_SIZE 512 in HardwareSerial.h so large sysex's go through as well */
-void receive() {
-  Serial.write((PIND>>3) + (PINB<<5));
-}
+#include "Fifo.h"
+
+static Fifo<byte, 192> fifo;
 
 void setup() {
-  DDRB = 0;
-  DDRD = 0;
+  static byte MASKB = B00000111; // Using lower 3 bits of the B port
+  static byte MASKD = B11111000; // Using upper 5 bits of the D port
+  // Set only the required bits to input, leaving all the other bits unchanged
+  DDRB &= ~MASKB;
+  DDRD &= ~MASKD;
   Serial.begin(31250);
+  auto receive = []() { fifo.push(((PIND & MASKD) >> 3) | ((PINB & MASKB) << 5)); };
   attachInterrupt(digitalPinToInterrupt(2), receive, RISING);
 }
 
 void loop() {
+  // TODO: we could check here for fifo overflow using the fifo.full()
+  //       function and notifying somehow the user. May be by blinking
+  //       the LED?
+  if (!fifo.empty()) {
+    Serial.write(fifo.pop());
+  }
 }
